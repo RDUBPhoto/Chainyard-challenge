@@ -1,0 +1,21 @@
+@import "theme";
+body {
+    font-family: 'Krub', sans-serif !important;
+}
+
+.btn:focus,
+.btn:active,
+.btn-primary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.invert-border {
+    border-top: 1px solid $primary;
+}
+
+a {
+    &:hover {
+        text-decoration: none !important;
+    }
+}

@@ -1,0 +1,13 @@
+<ng-sidebar-container>
+    <ng-sidebar [mode]="'push'" [(opened)]="_opened">
+        <div class="brand">
+            <img class="pt-3" src="assets/img/acme.svg" alt="Acme Logo">
+        </div>
+        <app-navigation></app-navigation>
+        <!-- <a closeSidebar>Closes the sidebar</a> -->
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <!-- <button class="btn btn-primary" (click)="_toggleSidebar()">Open sidebar</button> -->
+        <app-dashboard></app-dashboard>
+    </div>
+</ng-sidebar-container>

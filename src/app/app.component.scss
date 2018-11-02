@@ -1,0 +1,24 @@
+@import "../assets/theme";
+ng-sidebar-container {
+    height: 100vh;
+}
+
+:host ::ng-deep .ng-sidebar {
+    background-color: $dark-bg;
+    color: $white;
+    width: 15%;
+    min-width: 250px;
+    // display: flex;
+    // flex-direction: column;
+    padding: 0;
+    .brand {
+        img {
+            width: 155px;
+        }
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 16px;
+    }
+}

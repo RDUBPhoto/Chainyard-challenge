@@ -1,0 +1,21 @@
+<ul class="nav flex-column mt-4">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">
+            <div dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+                <a href class="d-flex justify-content-between align-items-center" id="basic-link" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">John Doe Jr. <i class="fal fa-caret-down"></i></a>
+                <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="basic-link">
+                    <li *ngFor="let choice of items">
+                        <a class="dropdown-item" href="#">{{choice}}</a>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+    <div class="invert-border"></div>
+    <li class="nav-item mt-3">
+        <a class="nav-link" href="#"><i class="fal fa-home mr-3"></i> Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fal fa-shopping-cart mr-3"></i> Buy / Sell</a>
+    </li>
+</ul>

@@ -1,0 +1,24 @@
+@import "../../assets/theme";
+.container-fluid {
+    padding-left: 24px;
+    padding-right: 24px;
+    .card {
+        background-color: $light-gray;
+        border: none;
+    }
+}
+
+form {
+    &.search {
+        display: flex;
+        align-items: center;
+        i {
+            color: $muted;
+            font-size: 24px;
+            &:hover {
+                cursor: pointer;
+                color: $black;
+            }
+        }
+    }
+}
