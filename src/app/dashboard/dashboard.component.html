@@ -82,8 +82,7 @@
     <div class="row">
         <div class="col-sm-6">
             <form class="search">
-                <input class="form-control w-100 mr-3" type="search" placeholder="Search Blocks" aria-label="Search Blocks">
-                <i class="fal fa-search"></i>
+                <input class="form-control w-100" type="search" placeholder="View Single Block (type hash)" aria-label="View Single Block (type hash)">
             </form>
         </div>
     </div>
@@ -93,25 +92,32 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <tabset>
-                            <tab heading="Basic title" id="tab1">Something</tab>
-                            <tab heading="Basic Title 1">Basic content 1</tab>
-                            <tab heading="Basic Title 2">Basic content 2</tab>
-                        </tabset>
+                        <h3>Latest BLOCK</h3>
+                        (replace with Single BLOCK on Filter)
                     </div>
+                    <form class="search">
+                        <input class="form-control w-100" type="search" placeholder="Filter Latest Block" aria-label="Filter Latest Block">
+                    </form>
+                    <br>
+                    <button class="btn btn-sm btn-outline-primary" *ngFor="let transaction of latestBlock.txIndexes" (click)="getTransactionData(transaction)">
+                        {{transaction}}
+                    </button>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <div *ngIf="undefined === restItems">Loading...</div>
-                    <div *ngIf="undefined !== restItems">
+                    <div *ngIf="undefined === latestBlock">Loading...</div>
+                    <div *ngIf="undefined !== latestBlock">
                         <ul>
-                            <li *ngFor="let post of restItems['posts']" [innerHTML]="post.title">
+                            <li *ngIf="transaction !== undefined">
+                                {{transaction.hash}}
                             </li>
                         </ul>
                     </div>
+                    <!-- <div class="">{{restItems.hash}}</div>
+                    <div class="">{{latestBlock.hash}}</div> -->
                 </div>
             </div>
         </div>

@@ -12,28 +12,47 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class DashboardComponent implements OnInit {
   modalRef: BsModalRef;
-  restItems: any;
-  restItemsUrl = 'https://blockchain.info/rawblock/0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103?cors=true';
+  singleItem: any = "";
+  latestBlock: any = "";
+  transaction: any;
+  singleBlockUrl = 'https://blockchain.info/rawblock/0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103?cors=true';
+  latestBlockUrl = 'https://blockchain.info/latestblock?cors=true';
+  singleTransactionUrl = 'https://blockchain.info/rawtx/';
 
   constructor(private http: HttpClient, private modalService: BsModalService) {}
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
   ngOnInit() {
-    this.getRestItems();
+    this.getBlockchainData();
 }
-getRestItems(): void {
-  this.restItemsServiceGetRestItems()
+getBlockchainData(): void {
+  this.get(this.singleBlockUrl)
     .subscribe(
-      restItems => {
-        this.restItems = restItems;
-        console.log(this.restItems);
+      singleItem => {
+        this.singleItem = singleItem;
+      }
+    ),
+    this.get(this.latestBlockUrl)
+    .subscribe(
+      latestBlock => {
+        this.latestBlock = latestBlock;
       }
     )
 }
-restItemsServiceGetRestItems() {
-  return this.http
-    .get<any[]>(this.restItemsUrl)
-    .pipe(map(data => data));
+getTransactionData(transactionIndex): void {
+  this.get(this.singleTransactionUrl + transactionIndex + "?cors=true")
+    .subscribe(
+      transaction => {
+        this.transaction = transaction;
+      }
+    )
 }
+get(url: string)
+{
+  return this.http
+  .get<any[]>(url)
+  .pipe(map(data => data));
+};
+
 }
