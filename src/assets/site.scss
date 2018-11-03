@@ -19,3 +19,14 @@ a {
         text-decoration: none !important;
     }
 }
+
+i {
+    &:hover {
+        cursor: pointer;
+        @include hover-transition;
+    }
+}
+
+.small-text {
+    font-size: 12px;
+}

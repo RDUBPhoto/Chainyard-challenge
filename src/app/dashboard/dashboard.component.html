@@ -1,16 +1,86 @@
 <div class="container-fluid mt-4">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <button class="btn btn-outline-primary mr-3"><i class="fal fa-arrow-alt-from-bottom"></i> Send</button>
+            <button class="btn btn-outline-primary mr-3" (click)="openModal(template)"><i class="fal fa-arrow-alt-from-bottom"></i> Send</button>
+            <ng-template #template>
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Send Currency</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Currency</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Some Currency</option>
+                                    <option>Another Something</option>
+                                  </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">From</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Some Wallet</option>
+                                    <option>Another Something</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputWalletAddress">To</label>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control" id="inputWalletAddress" placeholder="Paste or Select an Address">
+                                <i class="fal fa-qrcode fa-2x ml-2"></i>
+                            </div>
+
+                        </div>
+                        <div class="form-row d-flex align-items-center">
+                            <div class="form-group col-md-5">
+                                <label for="inputAddress2">Amount</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="0.00">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="w-100" for="">&nbsp;</label>
+                                <i class="fal fa-arrows-h text-center w-100"></i>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="">&nbsp;</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="0.00">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputCity">Description</label>
+                                <textarea type="text" class="form-control" id=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex align-items-center justify-content-between">
+                            <div class="form-group col-md-6">
+                                <label for="">Transaction Fee</label>
+                                <select id="" class="form-control">
+                                <option selected>Some Fee</option>
+                                <option>Another Something</option>
+                            </select>
+                            </div>
+                            <div class="">
+                                <h4 class="m-0">$1234.99</h4>
+                                <div class="font-weight-light small-text text-primary">Some Coin Name</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Continue</button>
+                    </form>
+                </div>
+            </ng-template>
             <button class="btn btn-outline-primary"><i class="fal fa-arrow-alt-from-top"></i> Request</button>
         </div>
         <div class="col-sm-6 d-flex flex-column text-right">
             <span class="h4">Wallet Balance</span>
-            <span class="h5 text-success">$1,234.56</span>
+            <span class="h5 text-success font-weight-bold">$1,234.56</span>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <form class="search">
                 <input class="form-control w-100 mr-3" type="search" placeholder="Search Blocks" aria-label="Search Blocks">
                 <i class="fal fa-search"></i>
