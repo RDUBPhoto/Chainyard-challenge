@@ -6,8 +6,8 @@
                 <div class="modal-header">
                     <h4 class="modal-title pull-left">Send Currency</h4>
                     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+            <span aria-hidden="true">&times;</span>
+          </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -15,16 +15,16 @@
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Currency</label>
                                 <select id="inputState" class="form-control">
-                                    <option selected>Some Currency</option>
-                                    <option>Another Something</option>
-                                  </select>
+                  <option selected>Some Currency</option>
+                  <option>Another Something</option>
+                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">From</label>
                                 <select id="inputState" class="form-control">
-                                    <option selected>Some Wallet</option>
-                                    <option>Another Something</option>
-                                </select>
+                  <option selected>Some Wallet</option>
+                  <option>Another Something</option>
+                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -33,7 +33,6 @@
                                 <input type="text" class="form-control" id="inputWalletAddress" placeholder="Paste or Select an Address">
                                 <i class="fal fa-qrcode fa-2x ml-2"></i>
                             </div>
-
                         </div>
                         <div class="form-row d-flex align-items-center">
                             <div class="form-group col-md-5">
@@ -59,9 +58,9 @@
                             <div class="form-group col-md-6">
                                 <label for="">Transaction Fee</label>
                                 <select id="" class="form-control">
-                                <option selected>Some Fee</option>
-                                <option>Another Something</option>
-                            </select>
+                                  <option selected>Some Fee</option>
+                                  <option>Another Something</option>
+                                </select>
                             </div>
                             <div class="">
                                 <h4 class="m-0">$1234.99</h4>
@@ -80,52 +79,83 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <form class="search">
-                <input class="form-control w-100" type="search" placeholder="View Single Block (type hash)" aria-label="View Single Block (type hash)">
+                <input class="form-control w-100 mr-2" type="search" placeholder="View Single Block (type hash)" name="blockHash" aria-label="View Single Block (type hash)" [(ngModel)]="selectedBlockHash">
+                <button class="btn btn-primary mr-2" (click)="getBlockData()">View</button>
+                <button class="btn btn-primary" (click)="getLatestBlockData()" *ngIf="!showingLatestBlock">Show Latest Block</button>
             </form>
         </div>
     </div>
     <hr />
-    <div class="row mb-3">
-        <div class="col-sm-4 col-md-6">
+    <div class="row mb-3" *ngIf="blockData !== undefined">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">
-                        <h3>Latest BLOCK</h3>
-                        (replace with Single BLOCK on Filter)
+                    <div class="row">
+                        <div class="col-sm-8 border-right">
+                            <h3><span *ngIf="showingLatestBlock">Latest</span> Block</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Hash</th>
+                                        <th>Time</th>
+                                        <th>Index</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{blockData.hash}}</td>
+                                        <td>{{blockData.time}}</td>
+                                        <td>{{blockData.block_index}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form class="search">
+                                <input class="form-control" type="search" placeholder="Filter Transactions" name="transactionFilter" aria-label="Filter Transactions" [(ngModel)]="transactionIndex">
+                            </form>
+                            <br>
+                            <div class="block-data">
+                                <button [ngClass]="{'active':  transaction   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.txIndexes | filter: '' : transactionIndex " (click)="getTransactionData(transaction) ">
+                                    {{transaction}}
+                                  </button>
+                                <button [ngClass]="{'active':  transaction.tx_index   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.tx  | filter: 'tx_index' : transactionIndex" (click)="getTransactionData(transaction.tx_index)">                    {{transaction.tx_index}}
+                                  </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Transaction Details</h3>
+                            <h6 class="font-weight-light" *ngIf="transaction === undefined">
+                                Select a transaction to view details</h6>
+                            <div class="transaction-data" *ngIf="transaction !== undefined">
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Hash: {{transaction.hash}}</li>
+                                    <li class="list-group-item">Block Height: {{transaction.block_height}}</li>
+                                    <li class="list-group-item">Double Spend: {{transaction.double_spend}}</li>
+                                    <li class="list-group-item">Lock Time: {{transaction.lock_time}}</li>
+                                    <li class="list-group-item">Relayed By: {{transaction.relayed_by}}</li>
+                                    <li class="list-group-item">Size: {{transaction.size}}</li>
+                                    <li class="list-group-item">Time: {{transaction.time}}</li>
+                                    <li class="list-group-item">TX Index: {{transaction.tx_index}}</li>
+                                    <li class="list-group-item">Ver: {{transaction.ver}}</li>
+                                    <li class="list-group-item">Vin SZ{{transaction.vin_sz}}</li>
+                                    <li class="list-group-item">Vout SZ{{transaction.vout_sz }}</li>
+                                    <li class="list-group-item">Weight: {{transaction.weight}}</li>
+                                    <li class="list-group-item">
+                                        Inputs:
+                                        <div *ngFor="let input of transaction.inputs">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">Script: {{input.script}}</li>
+                                                <li class="list-group-item">Sequence: {{input.sequence}}</li>
+                                                <li class="list-group-item">Witness: {{input.witness}}</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <form class="search">
-                        <input class="form-control w-100" type="search" placeholder="Filter Latest Block" aria-label="Filter Latest Block">
-                    </form>
-                    <br>
-                    <button class="btn btn-sm btn-outline-primary" *ngFor="let transaction of latestBlock.txIndexes" (click)="getTransactionData(transaction)">
-                        {{transaction}}
-                    </button>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div *ngIf="undefined === latestBlock">Loading...</div>
-                    <div *ngIf="undefined !== latestBlock">
-                        <ul>
-                            <li *ngIf="transaction !== undefined">
-                                {{transaction.hash}}
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- <div class="">{{restItems.hash}}</div>
-                    <div class="">{{latestBlock.hash}}</div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-sm-4 col-md-6">
-            <div class="card">
-                <div class="card-body"></div>
             </div>
         </div>
     </div>

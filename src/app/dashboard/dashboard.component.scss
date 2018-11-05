@@ -22,3 +22,19 @@ form {
         }
     }
 }
+
+.block-data {
+    max-height: 275px;
+    overflow: auto;
+    button {
+        width: 98px;
+    }
+}
+
+.transaction-data {
+    max-height: 450px;
+    overflow: auto;
+    .list-group-item {
+        font-size: 12px;
+    }
+}

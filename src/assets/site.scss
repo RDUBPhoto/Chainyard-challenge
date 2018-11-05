@@ -1,8 +1,4 @@
 @import "theme";
-body {
-    font-family: 'Krub', sans-serif !important;
-}
-
 .btn:focus,
 .btn:active,
 .btn-primary:focus {
@@ -29,4 +25,8 @@ i {
 
 .small-text {
     font-size: 12px;
+}
+
+.muted-text {
+    color: $muted;
 }
