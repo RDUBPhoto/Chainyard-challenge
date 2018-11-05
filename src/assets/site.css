@@ -1,0 +1,34 @@
+.btn:focus,
+.btn:active,
+.btn-primary:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.invert-border {
+  border-top: 1px solid #7B9BA6;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+i:hover {
+  cursor: pointer;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.muted-text {
+  color: #d9d9d9;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+/*# sourceMappingURL=site.css.map */

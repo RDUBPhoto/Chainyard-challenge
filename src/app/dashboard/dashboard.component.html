@@ -89,71 +89,73 @@
     </div>
     <hr />
     <div class="row mb-3" *ngIf="blockData !== undefined">
-        <div class="col-sm-12">
+        <div class="col-lg-8 col-md-12 col-sm-12 border-right mt-2">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-8 border-right">
-                            <h3><span *ngIf="showingLatestBlock">Latest</span> Block</h3>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Hash</th>
-                                        <th>Time</th>
-                                        <th>Index</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{blockData.hash}}</td>
-                                        <td>{{blockData.time}}</td>
-                                        <td>{{blockData.block_index}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <form class="search">
-                                <input class="form-control" type="search" placeholder="Filter Transactions" name="transactionFilter" aria-label="Filter Transactions" [(ngModel)]="transactionIndex">
-                            </form>
-                            <br>
-                            <div class="block-data">
-                                <button [ngClass]="{'active':  transaction   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.txIndexes | filter: '' : transactionIndex " (click)="getTransactionData(transaction) ">
+                    <h3><span *ngIf="showingLatestBlock">Latest</span> Block</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Hash</th>
+                                    <th>Time</th>
+                                    <th>Index</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{blockData.hash}}</td>
+                                    <td>{{blockData.time}}</td>
+                                    <td>{{blockData.block_index}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form class="search">
+                        <input class="form-control" type="search" placeholder="Filter Transactions" name="transactionFilter" aria-label="Filter Transactions" [(ngModel)]="transactionIndex">
+                    </form>
+                    <br>
+                    <div class="block-data">
+                        <button [ngClass]="{'active':  transaction   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.txIndexes | filter: '' : transactionIndex " (click)="getTransactionData(transaction) ">
                                     {{transaction}}
                                   </button>
-                                <button [ngClass]="{'active':  transaction.tx_index   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.tx  | filter: 'tx_index' : transactionIndex" (click)="getTransactionData(transaction.tx_index)">                    {{transaction.tx_index}}
+                        <button [ngClass]="{'active':  transaction.tx_index   === selectedTransactionIndex}" class="btn btn-sm btn-outline-primary mr-1 mb-1" *ngFor="let transaction of blockData.tx  | filter: 'tx_index' : transactionIndex" (click)="getTransactionData(transaction.tx_index)">                    {{transaction.tx_index}}
                                   </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <h3>Transaction Details</h3>
-                            <h6 class="font-weight-light" *ngIf="transaction === undefined">
-                                Select a transaction to view details</h6>
-                            <div class="transaction-data" *ngIf="transaction !== undefined">
-                                <ul class="list-group mt-3">
-                                    <li class="list-group-item">Hash: {{transaction.hash}}</li>
-                                    <li class="list-group-item">Block Height: {{transaction.block_height}}</li>
-                                    <li class="list-group-item">Double Spend: {{transaction.double_spend}}</li>
-                                    <li class="list-group-item">Lock Time: {{transaction.lock_time}}</li>
-                                    <li class="list-group-item">Relayed By: {{transaction.relayed_by}}</li>
-                                    <li class="list-group-item">Size: {{transaction.size}}</li>
-                                    <li class="list-group-item">Time: {{transaction.time}}</li>
-                                    <li class="list-group-item">TX Index: {{transaction.tx_index}}</li>
-                                    <li class="list-group-item">Ver: {{transaction.ver}}</li>
-                                    <li class="list-group-item">Vin SZ{{transaction.vin_sz}}</li>
-                                    <li class="list-group-item">Vout SZ{{transaction.vout_sz }}</li>
-                                    <li class="list-group-item">Weight: {{transaction.weight}}</li>
-                                    <li class="list-group-item">
-                                        Inputs:
-                                        <div *ngFor="let input of transaction.inputs">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">Script: {{input.script}}</li>
-                                                <li class="list-group-item">Sequence: {{input.sequence}}</li>
-                                                <li class="list-group-item">Witness: {{input.witness}}</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Transaction Details</h3>
+                    <h6 class="font-weight-light" *ngIf="transaction === undefined">
+                        Select a transaction to view details</h6>
+                    <div class="transaction-data" *ngIf="transaction !== undefined">
+                        <ul class="list-group mt-3">
+                            <li class="list-group-item">Hash: {{transaction.hash}}</li>
+                            <li class="list-group-item">Block Height: {{transaction.block_height}}</li>
+                            <li class="list-group-item">Double Spend: {{transaction.double_spend}}</li>
+                            <li class="list-group-item">Lock Time: {{transaction.lock_time}}</li>
+                            <li class="list-group-item">Relayed By: {{transaction.relayed_by}}</li>
+                            <li class="list-group-item">Size: {{transaction.size}}</li>
+                            <li class="list-group-item">Time: {{transaction.time}}</li>
+                            <li class="list-group-item">TX Index: {{transaction.tx_index}}</li>
+                            <li class="list-group-item">Ver: {{transaction.ver}}</li>
+                            <li class="list-group-item">Vin SZ{{transaction.vin_sz}}</li>
+                            <li class="list-group-item">Vout SZ{{transaction.vout_sz }}</li>
+                            <li class="list-group-item">Weight: {{transaction.weight}}</li>
+                            <li class="list-group-item">
+                                Inputs:
+                                <div *ngFor="let input of transaction.inputs">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Script: {{input.script}}</li>
+                                        <li class="list-group-item">Sequence: {{input.sequence}}</li>
+                                        <li class="list-group-item">Witness: {{input.witness}}</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

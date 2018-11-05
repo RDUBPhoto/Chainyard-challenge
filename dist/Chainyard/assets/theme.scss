@@ -1,0 +1,16 @@
+//Backgrounds
+$lightest-bg: #EEF4F2;
+$light-bg: #CDD6D5;
+$dark-bg: #32475e;
+$light-gray: #f2f2f2;
+$primary: #7B9BA6;
+//--text
+$black: #333;
+$white: #fff;
+$muted: lighten(#333, 65%);
+//Color theme
+$theme-colors: ( primary: #7B9BA6);
+//Hover Transitions
+@mixin hover-transition {
+    transition: 0.5s ease;
+}

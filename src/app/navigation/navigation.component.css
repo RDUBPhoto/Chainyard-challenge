@@ -1,0 +1,30 @@
+ul li a {
+  color: #fff;
+}
+
+ul li a.nav-link {
+  padding: 14px 16px;
+}
+
+ul li a .open ul {
+  top: auto !important;
+  background-color: #fff;
+  margin-top: 13px;
+}
+
+ul li a .open ul li a.dropdown-item:hover, ul li a .open ul li a.dropdown-item:focus {
+  background-color: #7B9BA6 !important;
+  color: #fff;
+}
+
+ul li a .open ul li a.dropdown-item {
+  padding: 0.5rem 1.5rem;
+  color: #333;
+}
+
+ul li:hover {
+  background-color: #7B9BA6;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+/*# sourceMappingURL=navigation.component.css.map */

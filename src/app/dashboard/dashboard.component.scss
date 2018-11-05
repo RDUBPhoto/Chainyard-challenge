@@ -36,5 +36,6 @@ form {
     overflow: auto;
     .list-group-item {
         font-size: 12px;
+        word-wrap: break-word;
     }
 }
