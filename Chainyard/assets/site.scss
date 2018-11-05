@@ -1,0 +1,36 @@
+@import "theme";
+.btn:focus,
+.btn:active,
+.btn-primary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.invert-border {
+    border-top: 1px solid $primary;
+}
+
+a {
+    &:hover {
+        text-decoration: none !important;
+    }
+}
+
+i {
+    &:hover {
+        cursor: pointer;
+        @include hover-transition;
+    }
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.muted-text {
+    color: $muted;
+}
+
+.word-wrap {
+    word-wrap: break-word;
+}
